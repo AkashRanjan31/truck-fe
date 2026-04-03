@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDriver } from '../context/DriverContext';
 import { changeDriverPassword } from '../services/api';
 import AnimatedPage from '../components/ui/AnimatedPage';
-import { Truck, Phone, Hash, Calendar, Key, LogOut, CheckCircle } from 'lucide-react';
+import { Truck, Phone, Hash, Calendar, Key, LogOut } from 'lucide-react';
 import './ProfilePage.css';
 
 export default function ProfilePage() {

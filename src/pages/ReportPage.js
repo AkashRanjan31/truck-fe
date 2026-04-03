@@ -4,7 +4,7 @@ import { emitNewReport } from '../services/socket';
 import { useNavigate } from 'react-router-dom';
 import { useDriver } from '../context/DriverContext';
 import AnimatedPage from '../components/ui/AnimatedPage';
-import { AlertTriangle, Camera, CheckCircle, Send } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Send } from 'lucide-react';
 import './ReportPage.css';
 
 const ISSUE_TYPES = [

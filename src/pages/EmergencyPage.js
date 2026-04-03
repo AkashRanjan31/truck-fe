@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { triggerSOS, updateLocation } from '../services/api';
 import { useDriver } from '../context/DriverContext';
 import AnimatedPage from '../components/ui/AnimatedPage';
-import { ShieldAlert, Truck, User, Phone, Bookmark, Clock } from 'lucide-react';
+import { ShieldAlert, Truck, User, Phone } from 'lucide-react';
 import './EmergencyPage.css';
 
 export default function EmergencyPage() {
