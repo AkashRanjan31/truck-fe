@@ -1,0 +1,194 @@
+/* ── TruckAnimation.css ─────────────────────────────────────── */
+
+.truck-scene {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Road ── */
+.truck-road {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+  border-top: 3px solid rgba(255, 200, 50, 0.6);
+}
+
+.truck-road::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 40px,
+    rgba(255, 255, 255, 0.5) 40px,
+    rgba(255, 255, 255, 0.5) 80px
+  );
+  animation: roadScroll 0.4s linear infinite;
+}
+
+.truck-road::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes roadScroll {
+  from { background-position-x: 0; }
+  to   { background-position-x: 80px; }
+}
+
+/* ── Truck wrapper ── */
+.truck-wrapper {
+  position: absolute;
+  bottom: 58px;
+  left: -400px;
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  animation: truckDriveIn 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+}
+
+.truck-wrapper.truck-idle {
+  animation: none;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: engineIdle 0.15s ease-in-out infinite alternate;
+}
+
+.truck-wrapper.truck-exit {
+  animation: truckDriveOut 1s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes truckDriveIn {
+  0%   { left: -400px; }
+  100% { left: calc(50% - 140px); }
+}
+
+@keyframes truckDriveOut {
+  0%   { left: calc(50% - 140px); }
+  100% { left: calc(100% + 400px); }
+}
+
+@keyframes engineIdle {
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(-2px); }
+}
+
+/* ── Truck SVG container ── */
+.truck-body {
+  position: relative;
+  width: 280px;
+  height: 120px;
+}
+
+/* ── Wheels ── */
+.wheel {
+  position: absolute;
+  bottom: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #1a1a1a);
+  border: 4px solid #888;
+  animation: wheelSpin 0.3s linear infinite;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.wheel::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  border: 2px solid #888;
+}
+
+.wheel-front { left: 210px; }
+.wheel-rear  { left: 30px; }
+
+.truck-wrapper.truck-idle .wheel,
+.truck-wrapper.truck-exit .wheel {
+  animation-play-state: running;
+}
+
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── SVG Truck shape ── */
+.truck-svg {
+  width: 280px;
+  height: 120px;
+}
+
+/* ── Headlight glow ── */
+.headlight-glow {
+  position: absolute;
+  right: -60px;
+  top: 25px;
+  width: 80px;
+  height: 30px;
+  background: radial-gradient(ellipse at left, rgba(255, 220, 80, 0.6) 0%, transparent 70%);
+  animation: headlightPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes headlightPulse {
+  0%, 100% { opacity: 0.6; width: 80px; }
+  50%       { opacity: 1;   width: 100px; }
+}
+
+/* ── Exhaust smoke ── */
+.smoke-container {
+  position: absolute;
+  left: -10px;
+  top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.smoke-puff {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(180, 180, 180, 0.4);
+  animation: smokeDrift 1.5s ease-out infinite;
+  filter: blur(4px);
+}
+
+.smoke-puff:nth-child(2) { animation-delay: 0.5s; width: 10px; height: 10px; }
+.smoke-puff:nth-child(3) { animation-delay: 1s;   width: 8px;  height: 8px; }
+
+@keyframes smokeDrift {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  100% { transform: translate(-30px, -40px) scale(2.5); opacity: 0; }
+}
+
+/* Road scroll paused when idle */
+.truck-wrapper.truck-idle ~ .truck-road::before {
+  animation-play-state: paused;
+}

@@ -1,0 +1,149 @@
+.loc-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  backdrop-filter: blur(6px);
+}
+
+.loc-modal {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 780px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Header ── */
+.loc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.loc-header-info { display: flex; align-items: center; gap: 12px; }
+.loc-icon { font-size: 26px; }
+.loc-title { color: var(--accent); font-size: 15px; font-weight: 700; margin: 0; }
+.loc-address { color: var(--muted); font-size: 11px; margin: 2px 0 0; }
+.loc-close {
+  background: none; color: var(--muted); font-size: 20px;
+  border-radius: 6px; padding: 4px 8px; cursor: pointer; transition: all 0.18s;
+}
+.loc-close:hover { color: var(--text); background: rgba(255,255,255,0.08); }
+
+/* ── Coords bar ── */
+.loc-coords-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background: rgba(59,130,246,0.05);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.loc-coord-item { color: var(--muted); font-size: 12px; }
+.loc-coord-item strong { color: var(--info); }
+.loc-coord-desc {
+  color: var(--text2); font-size: 12px;
+  border-left: 1px solid var(--border); padding-left: 16px;
+  flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ── Map ── */
+.loc-map-container { flex: 1; min-height: 380px; position: relative; }
+
+/* ── Pin ── */
+.pin-wrapper {
+  position: relative; width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+}
+.pin-pulse {
+  position: absolute; width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(245,158,11,0.3);
+  animation: pinPulse 1.8s ease-out infinite;
+}
+.pin-marker {
+  position: relative; z-index: 1;
+  width: 40px; height: 40px;
+  background: var(--bg2); border: 3px solid var(--accent);
+  border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.pin-marker > * { transform: rotate(45deg); }
+@keyframes pinPulse {
+  0%   { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── Actions ── */
+.loc-actions {
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  flex-wrap: wrap;
+}
+.loc-btn {
+  padding: 9px 16px; border-radius: 8px;
+  font-size: 12px; font-weight: 600;
+  text-decoration: none; cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  display: inline-flex; align-items: center; gap: 6px;
+  border: none;
+}
+.loc-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.loc-btn:active { transform: translateY(0); }
+
+.loc-btn-nav  { background: var(--accent); color: var(--bg); }
+.loc-btn-gmaps { background: var(--info); color: #fff; }
+.loc-btn-copy {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border2) !important;
+  color: var(--muted);
+}
+.loc-btn-copy:hover { color: var(--text); }
+.loc-btn-close {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3) !important;
+  color: #f87171;
+  margin-left: auto;
+}
+.loc-btn-close:hover { background: rgba(239,68,68,0.2); }
+
+/* ── Leaflet inside modal ── */
+.loc-map-container .leaflet-control-zoom {
+  border: 1px solid var(--border2) !important;
+  border-radius: 10px !important; overflow: hidden;
+  box-shadow: var(--shadow) !important;
+  margin-bottom: 12px !important; margin-right: 12px !important;
+}
+.loc-map-container .leaflet-control-zoom a {
+  background: var(--glass) !important;
+  color: var(--accent) !important;
+  border-bottom: 1px solid var(--border) !important;
+  font-size: 18px !important; font-weight: 700 !important;
+  width: 36px !important; height: 36px !important; line-height: 36px !important;
+}
+.loc-map-container .leaflet-control-zoom a:hover {
+  background: rgba(245,158,11,0.15) !important; color: #fff !important;
+}
+.loc-map-container .leaflet-control-zoom-out { border-bottom: none !important; }
+
+@media (max-width: 600px) {
+  .loc-modal { border-radius: 12px; }
+  .loc-map-container { min-height: 260px; }
+  .loc-btn { font-size: 11px; padding: 8px 12px; }
+}

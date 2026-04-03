@@ -1,0 +1,357 @@
+/* ── HeroSection.css ─────────────────────────────────────────── */
+
+.hero-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ── Sky / background ── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #020617 0%,
+    #0a0f2c 30%,
+    #0f172a 55%,
+    #1a1a2e 70%,
+    #16213e 80%,
+    #0f3460 100%
+  );
+}
+
+/* Stars */
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+  background-size: 200px 200px, 150px 150px, 100px 100px;
+  background-position: 0 0, 50px 80px, 20px 40px;
+  animation: starsTwinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes starsTwinkle {
+  0%   { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Horizon glow */
+.hero-horizon {
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, transparent 0%, rgba(245, 158, 11, 0.07) 100%);
+  pointer-events: none;
+}
+
+/* ── Road section ── */
+.hero-road-section {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 30%, #111827 60%, #0d1117 100%);
+  border-top: 2px solid rgba(245, 158, 11, 0.25);
+}
+
+/* Road center lines */
+.hero-road-section::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 50px,
+    rgba(255, 255, 255, 0.45) 50px,
+    rgba(255, 255, 255, 0.45) 100px
+  );
+  animation: roadLineScroll 0.5s linear infinite;
+}
+
+/* Road edge lines */
+.hero-road-section::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(245, 158, 11, 0.15);
+}
+
+@keyframes roadLineScroll {
+  from { background-position-x: 0; }
+  to   { background-position-x: 100px; }
+}
+
+/* ── Content overlay ── */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px 24px 0;
+  text-align: center;
+}
+
+/* ── Brand / logo area ── */
+.hero-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  backdrop-filter: blur(12px);
+}
+
+.hero-brand-icon {
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+}
+
+.hero-brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.hero-brand-tag {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 10px;
+  background: rgba(245, 158, 11, 0.12);
+  border-radius: 20px;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+/* ── Headline ── */
+.hero-headline {
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 60px rgba(245,158,11,0.1);
+}
+
+.hero-headline-accent {
+  color: var(--accent);
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+/* ── Stats row ── */
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hero-stat:last-child { border-right: none; }
+
+.hero-stat-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 4px;
+}
+
+/* ── CTA Button ── */
+.hero-cta-group {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hero-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #020617;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.hero-btn-primary:hover::before { opacity: 1; }
+.hero-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.6);
+}
+.hero-btn-primary:active { transform: translateY(0px); }
+
+.hero-btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ── Truck section lower ── */
+.hero-truck-area {
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  right: 0;
+  height: 170px;
+  z-index: 5;
+}
+
+/* ── Feature chips ── */
+.hero-features {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.hero-feature-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 6px 14px;
+}
+
+.hero-feature-chip svg {
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+/* ── Scroll hint ── */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.scroll-dot {
+  width: 6px;
+  height: 6px;
+  background: rgba(245, 158, 11, 0.5);
+  border-radius: 50%;
+  animation: scrollBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(6px); opacity: 1; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .hero-content { padding: 32px 16px 0; }
+  .hero-stats { flex-wrap: wrap; }
+  .hero-stat { padding: 12px 18px; }
+  .hero-cta-group { flex-direction: column; width: 100%; }
+  .hero-btn-primary, .hero-btn-secondary { width: 100%; justify-content: center; }
+  .hero-headline { font-size: 28px; }
+}
