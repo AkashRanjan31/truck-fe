@@ -1,0 +1,39 @@
+/* TruckAlert Theme Variables */
+:root {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-2: #334155;
+  --color-border: #334155;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-orange: #f97316;
+  --color-orange-light: #fed7aa;
+  --color-red: #ef4444;
+  --color-green: #22c55e;
+  --color-blue: #3b82f6;
+  --color-yellow: #eab308;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 30px rgba(249, 115, 22, 0.2);
+}
+
+/* Traffic legend colors */
+.traffic-heavy { background: #ef4444; }
+.traffic-moderate { background: #f97316; }
+.traffic-light { background: #22c55e; }
+
+/* Animated gradient border for auth card */
+.auth-card-border {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid #334155;
+}
+
+/* Map floating panel */
+.map-panel {
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+}

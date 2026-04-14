@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --bg-input: #0f172a;
+    --border-color: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-orange: #f97316;
+    --accent-orange-dark: #ea580c;
+    --accent-red: #ef4444;
+    --accent-blue: #3b82f6;
+    --accent-green: #22c55e;
+    --accent-yellow: #eab308;
+  }
+
+  *, *::before, *::after { @apply box-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', 'Segoe UI', system-ui, Arial, sans-serif;
+    @apply antialiased;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+  }
+
+  /* Focus visible — keyboard accessibility */
+  :focus-visible {
+    outline: 2px solid #f97316;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #334155; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+  /* Selection */
+  ::selection { background: rgba(249,115,22,0.25); color: #fff; }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+      bg-orange-500 hover:bg-orange-600 active:bg-orange-700
+      text-white font-semibold py-2.5 px-5 rounded-xl
+      transition-all duration-200
+      disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
+      shadow-lg shadow-orange-500/20
+      select-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+      bg-slate-700 hover:bg-slate-600 active:bg-slate-800
+      text-white font-semibold py-2.5 px-5 rounded-xl
+      transition-all duration-200
+      disabled:opacity-50 disabled:cursor-not-allowed
+      border border-slate-600
+      select-none;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2
+      bg-red-500 hover:bg-red-600 active:bg-red-700
+      text-white font-semibold py-2.5 px-5 rounded-xl
+      transition-all duration-200
+      disabled:opacity-50 disabled:cursor-not-allowed
+      shadow-lg shadow-red-500/20
+      select-none;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+      text-slate-300 hover:text-white hover:bg-slate-700
+      font-medium py-2 px-4 rounded-lg
+      transition-all duration-200
+      select-none;
+  }
+
+  /* ── Inputs ── */
+  .input-field {
+    @apply w-full bg-slate-900 border border-slate-600
+      text-slate-100 rounded-xl px-4 py-3
+      focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500
+      placeholder-slate-500
+      transition-all duration-200
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .input-label {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-slate-800 rounded-2xl border border-slate-700/80 p-5 shadow-xl;
+  }
+  .card-dark {
+    @apply bg-slate-900 rounded-2xl border border-slate-700/80 p-5;
+  }
+  .card-glow {
+    @apply bg-slate-800 rounded-2xl border border-orange-500/30 p-5 shadow-xl shadow-orange-500/5;
+  }
+
+  /* ── Badges ── */
+  .badge { @apply inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full; }
+  .badge-low      { @apply badge bg-green-500/15  text-green-400  border border-green-500/30; }
+  .badge-medium   { @apply badge bg-yellow-500/15 text-yellow-400 border border-yellow-500/30; }
+  .badge-high     { @apply badge bg-orange-500/15 text-orange-400 border border-orange-500/30; }
+  .badge-critical { @apply badge bg-red-500/15    text-red-400    border border-red-500/30; }
+  .badge-pending  { @apply badge bg-yellow-500/15 text-yellow-400 border border-yellow-500/20; }
+  .badge-resolved { @apply badge bg-green-500/15  text-green-400  border border-green-500/20; }
+  .badge-rejected { @apply badge bg-red-500/15    text-red-400    border border-red-500/20; }
+  .badge-in_review{ @apply badge bg-blue-500/15   text-blue-400   border border-blue-500/20; }
+
+  /* ── Stat cards ── */
+  .stat-card  { @apply card flex items-center gap-4; }
+  .stat-icon  { @apply w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0; }
+
+  /* ── Nav ── */
+  .nav-link {
+    @apply flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium
+      transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-700/60;
+  }
+  .nav-link-active {
+    @apply flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium
+      bg-orange-500 text-white shadow-lg shadow-orange-500/30;
+  }
+
+  /* ── Glow ── */
+  .glow-orange { box-shadow: 0 0 30px rgba(249,115,22,0.3); }
+  .glow-red    { box-shadow: 0 0 40px rgba(239,68,68,0.5); }
+
+  /* ── SOS button ── */
+  .sos-btn {
+    @apply w-44 h-44 rounded-full bg-red-500 text-white font-black text-3xl
+      flex items-center justify-center cursor-pointer select-none
+      transition-all duration-200 active:scale-95;
+    box-shadow: 0 0 0 0 rgba(239,68,68,0.7);
+    animation: sos-pulse 2s infinite;
+  }
+  .sos-btn:disabled {
+    @apply bg-green-500 cursor-not-allowed;
+    animation: none;
+    box-shadow: 0 0 20px rgba(34,197,94,0.4);
+  }
+
+  /* ── Table ── */
+  .table-header { @apply text-xs uppercase text-slate-500 font-semibold pb-3 pr-4 text-left tracking-wide; }
+  .table-cell   { @apply py-3 pr-4 text-sm text-slate-300 align-middle; }
+  .table-row    { @apply border-b border-slate-700/40 hover:bg-slate-700/20 transition-colors; }
+
+  /* ── Chip/tag ── */
+  .chip         { @apply flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 text-xs font-semibold cursor-pointer transition-all duration-200 select-none; }
+  .chip-inactive{ @apply chip border-slate-600 text-slate-400 hover:border-slate-500 bg-slate-800/80; }
+  .chip-active  { @apply chip border-orange-500 bg-orange-500/10 text-orange-400; }
+
+  /* ── Map panel ── */
+  .map-panel {
+    background: rgba(15,23,42,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(51,65,85,0.8);
+  }
+}
+
+/* ── Animations ── */
+@keyframes sos-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
+  70%  { box-shadow: 0 0 0 30px rgba(239,68,68,0); }
+  100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* Skeleton shimmer override */
+.animate-pulse {
+  animation: pulse 1.8s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+
+/* ── Leaflet dark theme ── */
+.leaflet-container { background: #1e293b !important; }
+.leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+.leaflet-popup-tip { background: #1e293b !important; }
+.leaflet-control-zoom a {
+  background: rgba(15,23,42,0.92) !important;
+  color: #94a3b8 !important;
+  border-color: #334155 !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+/* ── Mobile tap targets ── */
+@media (max-width: 640px) {
+  .btn-primary, .btn-secondary, .btn-danger {
+    @apply min-h-[44px];
+  }
+  .input-field {
+    @apply text-base; /* prevents iOS zoom on focus */
+  }
+}
+
+/* ── Print ── */
+@media print {
+  .no-print { display: none !important; }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-orange-500/20;
+  }
+  .btn-secondary {
+    @apply bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 border border-slate-600;
+  }
+  .btn-danger {
+    @apply bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 shadow-lg shadow-red-500/20;
+  }
+  .btn-ghost {
+    @apply text-slate-300 hover:text-white hover:bg-slate-700 font-medium py-2 px-4 rounded-lg transition-all duration-200;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-slate-900 border border-slate-600 text-slate-100 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 placeholder-slate-500 transition-all duration-200;
+  }
+  .input-label {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-slate-800 rounded-2xl border border-slate-700 p-5 shadow-xl;
+  }
+  .card-dark {
+    @apply bg-slate-900 rounded-2xl border border-slate-700 p-5;
+  }
+  .card-glow {
+    @apply bg-slate-800 rounded-2xl border border-orange-500/30 p-5 shadow-xl shadow-orange-500/5;
+  }
+
+  /* Badges */
+  .badge { @apply text-xs font-semibold px-2.5 py-1 rounded-full; }
+  .badge-low { @apply badge bg-green-500/20 text-green-400 border border-green-500/30; }
+  .badge-medium { @apply badge bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+  .badge-high { @apply badge bg-orange-500/20 text-orange-400 border border-orange-500/30; }
+  .badge-critical { @apply badge bg-red-500/20 text-red-400 border border-red-500/30; }
+  .badge-pending { @apply badge bg-yellow-500/20 text-yellow-400; }
+  .badge-resolved { @apply badge bg-green-500/20 text-green-400; }
+  .badge-rejected { @apply badge bg-red-500/20 text-red-400; }
+  .badge-in_review { @apply badge bg-blue-500/20 text-blue-400; }
+
+  /* Stat cards */
+  .stat-card {
+    @apply card flex items-center gap-4;
+  }
+  .stat-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0;
+  }
+
+  /* Nav */
+  .nav-link {
+    @apply flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-700;
+  }
+  .nav-link-active {
+    @apply flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-medium bg-orange-500 text-white shadow-lg shadow-orange-500/30;
+  }
+
+  /* Glow effects */
+  .glow-orange { box-shadow: 0 0 30px rgba(249, 115, 22, 0.3); }
+  .glow-red { box-shadow: 0 0 40px rgba(239, 68, 68, 0.5); }
+
+  /* SOS button */
+  .sos-btn {
+    @apply w-44 h-44 rounded-full bg-red-500 text-white font-black text-3xl
+    flex items-center justify-center cursor-pointer select-none
+    transition-all duration-200 active:scale-95;
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    animation: sos-pulse 2s infinite;
+  }
+  .sos-btn:disabled {
+    @apply bg-green-500 cursor-not-allowed;
+    animation: none;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+  }
+
+  /* Table */
+  .table-header { @apply text-xs uppercase text-slate-500 font-semibold pb-3 pr-4 text-left; }
+  .table-cell { @apply py-3 pr-4 text-sm text-slate-300; }
+  .table-row { @apply border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors; }
+
+  /* Chip/tag */
+  .chip {
+    @apply flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 text-xs font-semibold cursor-pointer transition-all duration-200;
+  }
+  .chip-inactive { @apply chip border-slate-600 text-slate-400 hover:border-slate-500 bg-slate-800; }
+  .chip-active { @apply chip border-orange-500 bg-orange-500/10 text-orange-400; }
+}
+
+@keyframes sos-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { box-shadow: 0 0 0 30px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Leaflet dark override */
+.leaflet-container { background: #1e293b !important; }
+.leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+}
+.leaflet-popup-tip { background: #1e293b !important; }
