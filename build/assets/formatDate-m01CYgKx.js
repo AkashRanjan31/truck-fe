@@ -1,0 +1,1 @@
+const e=t=>t?new Date(t).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}):"—",a=t=>{if(!t)return"—";const n=Date.now()-new Date(t).getTime(),o=Math.floor(n/6e4);if(o<1)return"just now";if(o<60)return`${o}m ago`;const r=Math.floor(o/60);return r<24?`${r}h ago`:`${Math.floor(r/24)}d ago`};export{e as f,a as t};
