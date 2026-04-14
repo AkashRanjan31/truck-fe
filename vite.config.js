@@ -14,6 +14,7 @@ export default defineConfig({
   },
 
   build: {
+    outDir: 'build',
     target: 'es2020',
     sourcemap: false,
     chunkSizeWarningLimit: 600,
