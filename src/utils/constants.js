@@ -1,6 +1,6 @@
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
-export const UPLOADS_URL = import.meta.env.VITE_UPLOADS_URL || 'http://localhost:5000/uploads';
+export const API_URL     = import.meta.env.VITE_API_URL;
+export const SOCKET_URL  = import.meta.env.VITE_SOCKET_URL;
+export const UPLOADS_URL = import.meta.env.VITE_UPLOADS_URL;
 
 export const ROLES = {
   DRIVER: 'driver',

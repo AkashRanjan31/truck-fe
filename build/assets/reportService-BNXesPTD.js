@@ -1,1 +1,0 @@
-import{k as r}from"./index-DtM-WtLb.js";const a=t=>r.post("/reports/create",t,{headers:{"Content-Type":"multipart/form-data"}}),p=t=>r.get("/reports/my",{params:t}),s=t=>/^[a-f\d]{24}$/i.test(String(t??"")),n=(t,e)=>s(t)?r.put(`/reports/status/${t}`,e):Promise.reject(new Error("Invalid report id")),c=t=>r.get("/reports",{params:t});export{p as a,a as c,c as g,n as u};

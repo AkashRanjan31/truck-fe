@@ -3,7 +3,7 @@ import { resendOTP } from '../../services/authService';
 import { toast } from 'react-toastify';
 
 const ResendOTP = ({ email, type = 'login' }) => {
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(20); // matches backend 20s cooldown
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const ResendOTP = ({ email, type = 'login' }) => {
     try {
       await resendOTP(email, type);
       toast.success('New OTP sent to your Gmail!');
-      setCountdown(30);
+      setCountdown(20);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to resend OTP');
     } finally {
